@@ -25,13 +25,38 @@
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(to bottom right, #87CEEB, #001f3f);
       color: #fff;
-      padding: 2rem;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #003366;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0.5rem 1rem;
+      font-weight: bold;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      background-color: #0055aa;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #0077cc;
     }
 
     header {
       text-align: center;
-      margin-bottom: 3rem;
-      padding: 1rem;
+      padding: 2rem 1rem 1rem;
     }
 
     h1 {
@@ -56,7 +81,7 @@
       background-color: rgba(0, 0, 0, 0.4);
       border-radius: 15px;
       padding: 1.5rem;
-      margin-bottom: 2rem;
+      margin: 2rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       animation: fadeIn 1s ease-in;
     }
@@ -102,13 +127,13 @@
       cursor: pointer;
     }
 
-    button, .download-btn {
+    button, .download-btn, .share-btn {
       background-color: #003366;
       color: #fff;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 25px;
-      font-size: 1rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
       margin-top: 0.5rem;
@@ -116,7 +141,7 @@
       text-decoration: none;
     }
 
-    button:hover, .download-btn:hover {
+    button:hover, .download-btn:hover, .share-btn:hover {
       background-color: #0055aa;
     }
 
@@ -147,7 +172,7 @@
 
     footer {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem;
       font-size: 0.9rem;
       color: #ccc;
     }
@@ -156,17 +181,31 @@
       .media-list {
         flex-direction: column;
       }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#music">Music</a>
+    <a href="#videos">Videos</a>
+    <a href="#photos">Photos</a>
+    <a href="#contact">Contact</a>
+    <a href="#settings">Settings</a>
+  </nav>
+
+  <header id="home">
     <img src="logo.png" alt="Logo" class="logo" />
     <h1>WONDER-ARTPROMO</h1>
     <p class="description">HOME OF ARTS</p>
   </header>
 
-  <div class="section">
+  <div class="section" id="music">
     <h2>🎵 Beats (MP3)</h2>
     <div class="media-list">
       <div class="media-item">
@@ -182,7 +221,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="photos">
     <h2>🖼️ Images (PNG, JPG)</h2>
     <div class="media-list">
       <div class="media-item">
@@ -198,7 +237,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="videos">
     <h2>🎬 Videos (MP4, MOV)</h2>
     <div class="media-list">
       <div class="media-item">
@@ -214,7 +253,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="contact">
     <h2>📩 Contact Me</h2>
     <form>
       <input type="text" placeholder="Your Name" required />
@@ -227,27 +266,4 @@
   <div class="section">
     <h2>🔗 Follow Me</h2>
     <div class="social-icons">
-      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://soundcloud.com/yourprofile" target="_blank"><i class="fab fa-soundcloud"></i></a>
-    </div>
-  </div>
-
-  <div class="qr-section">
-    <h2>📷 Share with QR Code</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
-  </div>
-
-  <footer>
-    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
-  </footer>
-
-  <!-- PWA Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker Registered'));
-    }
-  </script>
-</body>
-</html>
+      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab
