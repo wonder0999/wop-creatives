@@ -122,5 +122,68 @@
     &copy; 2025 WOP CREATIVES. All rights reserved.
   </footer>
 
-</body>
+</body><script>
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "1") {
+      document.getElementById("dancehall").play();
+    } else if (e.key === "2") {
+      document.getElementById("trap").play();
+    }
+  });
+
+  const volumeSlider = document.getElementById("volume");
+  const dancehall = document.getElementById("dancehall");
+  const trap = document.getElementById("trap");
+
+  volumeSlider.addEventListener("input", function() {
+    dancehall.volume = this.value;
+    trap.volume = this.value;
+  });
+  </script>
+    <label for="volume">Volume:</label>
+<input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+
+<audio id="dancehall" controls>
+  <source src="DANCEHALL.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="trap" controls>
+  <source src="trap.mp3" type="audio/mpeg">
+      </audio>
+          <button id="themeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  ⚙️ Settings
+  </button>
+                                 body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+header.light-mode {
+  background-color: #f0f0f0;
+  color: #000000;
+  border-bottom: 2px solid #00ffd5;
+}
+
+section.light-mode,
+.about.light-mode,
+.contact.light-mode {
+  background-color: #f9f9f9;
+  color: #000000;
+}
+
+footer.light-mode {
+  background-color: #ddd;
+  color: #333;
+}
+  <script>
+  const toggleBtn = document.getElementById("themeToggle");
+
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    document.querySelector("header").classList.toggle("light-mode");
+    document.querySelectorAll("section").forEach(el => el.classList.toggle("light-mode"));
+    document.querySelectorAll(".about, .contact, footer").forEach(el => el.classList.toggle("light-mode"));
+  });
+  </script>
+  
 </html>
