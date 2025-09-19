@@ -37,6 +37,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: all 0.3s ease;
     }
 
     nav a {
@@ -127,13 +128,13 @@
       cursor: pointer;
     }
 
-    button, .download-btn, .share-btn {
+    button, .download-btn, .share-btn, .track-btn {
       background-color: #003366;
       color: #fff;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       border-radius: 25px;
-      font-size: 0.9rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
       margin-top: 0.5rem;
@@ -141,7 +142,7 @@
       text-decoration: none;
     }
 
-    button:hover, .download-btn:hover, .share-btn:hover {
+    button:hover, .download-btn:hover, .share-btn:hover, .track-btn:hover {
       background-color: #0055aa;
     }
 
@@ -204,7 +205,6 @@
     <h1>WONDER-ARTPROMO</h1>
     <p class="description">HOME OF ARTS</p>
   </header>
-
   <div class="section" id="music">
     <h2>🎵 Beats (MP3)</h2>
     <div class="media-list">
@@ -252,7 +252,6 @@
       </div>
     </div>
   </div>
-
   <div class="section" id="contact">
     <h2>📩 Contact Me</h2>
     <form>
@@ -266,4 +265,232 @@
   <div class="section">
     <h2>🔗 Follow Me</h2>
     <div class="social-icons">
-      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab
+      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://soundcloud.com/yourprofile" target="_blank"><i class="fab fa-soundcloud"></i></a>
+    </div>
+  </div>
+
+  <div class="section" id="settings">
+    <h2>⚙️ Settings</h2>
+    <p><a href="https://webqr.com/" target="_blank" class="download-btn">Open QR Scanner</a></p>
+    <button class="share-btn" onclick="shareSite()">Share This Site</button>
+  </div>
+
+  <div class="qr-section">
+    <h2>📷 Share with QR Code</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
+  </div>
+
+  <footer>
+    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
+  </footer>
+  <div class="section" id="fan-wall">
+    <h2>💬 Fan Wall</h2>
+    <form id="fanForm">
+      <input type="text" id="fanName" placeholder="Your Name or Nickname" required />
+      <input type="text" id="fanFavorite" placeholder="Favorite Beat or Art" />
+      <textarea id="fanMessage" rows="2" placeholder="Your Shoutout or Emoji"></textarea>
+      <button type="submit">Post Shoutout</button>
+    </form>
+    <div id="fanMessages" style="margin-top:1rem;"></div>
+  </div>
+
+  <div class="section" id="beat-store">
+    <h2>🛒 Beat Store</h2>
+    <p>Download or buy beats directly:</p>
+    <a href="https://gumroad.com" target="_blank" class="download-btn">Visit Store</a>
+  </div>
+
+  <div class="section" id="dark-mode">
+    <h2>🌙 Theme</h2>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </div>
+
+  <div class="section" id="gallery-slider">
+    <h2>🖼️ Art Gallery Slider</h2>
+    <div style="overflow-x:auto; white-space:nowrap;">
+      <img src="artwork1.png" style="width:200px; margin-right:10px;" />
+      <img src="design2.jpg" style="width:200px; margin-right:10px;" />
+      <img src="logo.png" style="width:200px;" />
+    </div>
+  </div>
+
+  <div class="section" id="visitor-counter">
+    <h2>🔥 Fans & Visitors</h2>
+    <p>This site has been visited by <span id="visitorCount">...</span> awesome people!</p>
+  </div>
+
+  <div class="section" id="intro-animation">
+    <h2>✨ Welcome Animation</h2>
+    <p id="introText" style="font-size:1.2rem; text-align:center;">Loading your vibe...</p>
+  </div>
+  <div class="section" id="playlist">
+    <h2>🎶 Music Playlist</h2>
+    <div id="playerContainer" style="background:#002244; border-radius:15px; padding:1rem;">
+      <audio id="playlistPlayer" controls style="width:100%; border-radius:10px;"></audio>
+      <ul id="trackList" style="list-style:none; padding:0; margin-top:1rem;">
+        <li style="margin-bottom:0.5rem;">
+          <button class="track-btn" onclick="playTrack('dancehall.mp3')">🎵 Dancehall Vibe</button>
+        </li>
+        <li style="margin-bottom:0.5rem;">
+          <button class="track-btn" onclick="playTrack('trap.mp3')">🎵 Trap Energy</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    .track-btn {
+      width: 100%;
+      background-color: #004080;
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .track-btn:hover {
+      background-color: #0066cc;
+    }
+  </style>
+
+  <script>
+    // Mobile nav shrink/expand
+    let lastScrollTop = 0;
+    const nav = document.querySelector("nav");
+    window.addEventListener("scroll", function () {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        nav.style.padding = "0.5rem";
+        nav.style.fontSize = "0.8rem";
+      } else {
+        nav.style.padding = "1rem";
+        nav.style.fontSize = "1rem";
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
+
+    // Fan Wall
+    document.getElementById("fanForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("fanName").value;
+      const fav = document.getElementById("fanFavorite").value;
+      const msg = document.getElementById("fanMessage").value;
+      const post = `<p><strong>${name}</strong> ❤️ ${fav}<br>${msg}</p>`;
+      document.getElementById("fanMessages").innerHTML += post;
+      this.reset();
+    });
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.style.background = document.body.style.background.includes("#001f3f")
+        ? "linear-gradient(to bottom right, #111, #333)"
+        : "linear-gradient(to bottom right, #87CEEB, #001f3f)";
+    }
+
+    // Visitor Counter (mock)
+    document.getElementById("visitorCount").innerText = Math.floor(Math.random() * 5000 + 1000);
+
+    // Intro Animation
+    let intro = document.getElementById("introText");
+    let dots = 0;
+    let interval = setInterval(() => {
+      intro.textContent = "Loading your vibe" + ".".repeat(dots % 4);
+      dots++;
+      if (dots > 10) {
+        clearInterval(interval);
+        intro.textContent = "You're in 🎉";
+      }
+    }, 300);
+
+    // Share button logic
+    function shareSite() {
+      const shareData = {
+        title: 'WONDER-ARTPROMO',
+        text: 'Check out my art projects!',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(console.error);
+      } else {
+        alert("Sharing not supported on this device.");
+      }
+    }
+
+    // Music Player
+    function playTrack(src) {
+      const player = document.getElementById("playlistPlayer");
+      player.src = src;
+      player.play();
+    }
+
+    // PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+    }
+  </script>
+</body>
+</html>
+  <div class="section" id="blog">
+    <h2>📝 Blog</h2>
+    <div class="media-item">
+      <h3>Behind the Beat: Dancehall Vibe</h3>
+      <p>This track came to life on a rainy night in Lilongwe. I wanted something that felt like motion and memory...</p>
+    </div>
+    <div class="media-item">
+      <h3>Design Secrets: Artwork1</h3>
+      <p>I used a mix of digital brushwork and layered textures to create the glowing effect. Fans say it reminds them of neon dreams...</p>
+    </div>
+  </div>
+
+  <div class="section" id="newsletter">
+    <h2>📬 Join the Newsletter</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p style="margin-top:1rem;">Stay updated with new beats, drops, and exclusive content.</p>
+  </div>
+
+  <div class="section" id="leaderboard">
+    <h2>🏆 Fan Leaderboard</h2>
+    <ul style="list-style:none; padding:0;">
+      <li><strong>🔥 Zama</strong> – 5 shoutouts</li>
+      <li><strong>🎨 Tasha</strong> – 3 art likes</li>
+      <li><strong>🎧 JayBeats</strong> – 2 beat downloads</li>
+    </ul>
+    <p style="margin-top:1rem;">Want to be featured? Drop a shoutout or share your favorite track!</p>
+  </div>
+  <div class="section" id="login">
+    <h2>🔐 Login</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <button onclick="continueAsGuest()">Continue as Guest</button>
+    <p id="welcomeMessage" style="margin-top:1rem;"></p>
+    <p style="margin-top:1rem;">Coming soon: Login with Google or Facebook</p>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      document.getElementById("welcomeMessage").textContent = `Welcome back, ${email.split('@')[0]}!`;
+      this.reset();
+    });
+
+    function continueAsGuest() {
+      document.getElementById("welcomeMessage").textContent = "Welcome, Guest 👋";
+    }
+  </script>
+</body>
+</html>
