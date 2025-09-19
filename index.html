@@ -11,7 +11,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #00ffd5, #ff00aa);
       background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      animation: gradientShift 30s ease infinite;
       color: #f0f0f0;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -86,6 +86,7 @@
       display: block;
       width: 100%;
       margin: 5px 0;
+      border-radius: 50px;
     }
 
     section {
@@ -134,24 +135,6 @@
       margin-top: 40px;
     }
 
-    /* Light Mode Styles */
-    body.light-mode {
-      background: #ffffff;
-      color: #000000;
-      animation: none;
-    }
-
-    header.light-mode {
-      background-color: #f0f0f0;
-      color: #000000;
-      border-bottom: 2px solid #00ffd5;
-    }
-
-    footer.light-mode {
-      background-color: #ddd;
-      color: #333;
-    }
-
     .highlight {
       background-color: #00ffd5;
       color: #000;
@@ -179,66 +162,26 @@
       border: none;
       width: 200px;
     }
+
+    /* Light Mode Styles */
+    body.light-mode {
+      background: #ffffff;
+      color: #000000;
+      animation: none;
+    }
+
+    header.light-mode {
+      background-color: #f0f0f0;
+      color: #000000;
+      border-bottom: 2px solid #00ffd5;
+    }
+
+    footer.light-mode {
+      background-color: #ddd;
+      color: #333;
+    }
   </style>
 </head>
-  <script>
-  // Toggle settings menu
-  const themeToggle = document.getElementById("themeToggle");
-  const settingsMenu = document.getElementById("settingsMenu");
-  const aboutPopup = document.getElementById("aboutPopup");
-
-  themeToggle.addEventListener("click", () => {
-    const isVisible = settingsMenu.style.display === "block";
-    settingsMenu.style.display = isVisible ? "none" : "block";
-    aboutPopup.style.display = "none";
-  });
-
-  // Theme switcher
-  function setTheme(mode) {
-    document.body.classList.toggle("light-mode", mode === "light");
-    settingsMenu.style.display = "none";
-  }
-
-  // About popup toggle
-  function toggleAbout() {
-    aboutPopup.style.display = aboutPopup.style.display === "block" ? "none" : "block";
-    settingsMenu.style.display = "none";
-  }
-
-  // Volume control
-  const volumeSlider = document.getElementById("volume");
-  const dancehall = document.getElementById("dancehall");
-  const trap = document.getElementById("trap");
-
-  volumeSlider.addEventListener("input", function() {
-    dancehall.volume = this.value;
-    trap.volume = this.value;
-  });
-
-  // Keyboard shortcuts
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "1") {
-      dancehall.play();
-    } else if (e.key === "2") {
-      trap.play();
-    }
-  });
-
-  // Search functionality
-  function searchTrack() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const tracks = document.querySelectorAll(".track");
-    tracks.forEach(track => {
-      track.classList.remove("highlight");
-      const name = track.querySelector("strong").textContent.toLowerCase();
-      if (name.includes(query)) {
-        track.scrollIntoView({ behavior: "smooth" });
-        track.classList.add("highlight");
-      }
-    });
-  }
-  </script>
-  
 <body>
 
   <button id="themeToggle">⚙️</button>
@@ -293,11 +236,13 @@
   </section>
 
   <footer>
-    &copy; 2025 WOP CREATIVES. All rights reserved.
+    &copy; 2025 WOP CREATIVES. All rights reserved.  
+    <br><br>
+    <button onclick="toggleAbout()">🧑‍🎤 About</button>
   </footer>
 
   <script>
-    // Theme toggle menu
+    // Settings menu toggle
     const themeToggle = document.getElementById("themeToggle");
     const settingsMenu = document.getElementById("settingsMenu");
     const aboutPopup = document.getElementById("aboutPopup");
@@ -313,12 +258,4 @@
     }
 
     function toggleAbout() {
-      aboutPopup.style.display = aboutPopup.style.display === "block" ? "none" : "block";
-    }
-
-    // Volume control
-    const volumeSlider = document.getElementById("volume");
-    const dancehall = document.getElementById("dancehall");
-    const trap = document.getElementById("trap");
-
-    volumeSlider
+      aboutPopup.style.display = aboutPopup.style.display === "block" ? "none"
