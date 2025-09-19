@@ -27,7 +27,6 @@
       padding: 30px 20px;
       text-align: center;
       border-bottom: 2px solid #00ffd5;
-      transition: background-color 0.3s, color 0.3s;
     }
 
     header img {
@@ -41,11 +40,58 @@
       color: #00ffd5;
     }
 
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .controls button, #themeToggle {
+      background-color: #00ffd5;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    #themeToggle {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2em;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #settingsMenu {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background-color: #1a1a1a;
+      border: 1px solid #00ffd5;
+      border-radius: 10px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    #settingsMenu button {
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+    }
+
     section {
       padding: 20px;
       max-width: 800px;
       margin: auto;
-      transition: background-color 0.3s, color 0.3s;
     }
 
     h2 {
@@ -57,11 +103,16 @@
 
     .track {
       margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .track img {
+      height: 40px;
     }
 
     .track strong {
-      display: block;
-      margin-bottom: 5px;
       font-size: 1.2em;
     }
 
@@ -69,12 +120,9 @@
       width: 100%;
     }
 
-    .about, .contact {
-      background-color: rgba(26, 26, 26, 0.9);
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      transition: background-color 0.3s, color 0.3s;
+    #volume {
+      width: 100%;
+      margin-top: 10px;
     }
 
     footer {
@@ -84,31 +132,6 @@
       font-size: 0.9em;
       color: #aaa;
       margin-top: 40px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    #themeToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      background-color: #00ffd5;
-      color: #000;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    label {
-      display: block;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    input[type="range"] {
-      width: 100%;
     }
 
     /* Light Mode Styles */
@@ -124,43 +147,85 @@
       border-bottom: 2px solid #00ffd5;
     }
 
-    section.light-mode,
-    .about.light-mode,
-    .contact.light-mode {
-      background-color: #f9f9f9;
-      color: #000000;
-    }
-
     footer.light-mode {
       background-color: #ddd;
       color: #333;
+    }
+
+    .highlight {
+      background-color: #00ffd5;
+      color: #000;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    #aboutPopup {
+      display: none;
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background-color: #1a1a1a;
+      border: 1px solid #00ffd5;
+      border-radius: 10px;
+      padding: 15px;
+      max-width: 300px;
+      z-index: 1000;
+      color: #f0f0f0;
+    }
+
+    #searchInput {
+      padding: 8px;
+      border-radius: 50px;
+      border: none;
+      width: 200px;
     }
   </style>
 </head>
 <body>
 
-  <button id="themeToggle">⚙️ Settings</button>
+  <button id="themeToggle">⚙️</button>
+
+  <div id="settingsMenu">
+    <button onclick="setTheme('light')">🌞 Daylight</button>
+    <button onclick="setTheme('dark')">🌙 Night Light</button>
+    <button onclick="toggleAbout()">🧑‍🎤 About</button>
+  </div>
+
+  <div id="aboutPopup">
+    <h3>About WOP CREATIVES</h3>
+    <p>
+      I'm a passionate music producer blending genres from dancehall to trap. This site is my personal vault of sound—crafted to inspire, energize, and connect. Explore the tracks and feel the rhythm.
+    </p>
+  </div>
 
   <header>
     <img src="logo.png" alt="WOP CREATIVES Logo">
     <h1>WOP CREATIVES</h1>
   </header>
 
-  <section>
+  <section class="controls">
+    <input type="text" id="searchInput" placeholder="Search song name">
+    <button onclick="searchTrack()">🔍 Search</button>
+    <button onclick="document.getElementById('music').scrollIntoView({ behavior: 'smooth' })">📂 Playlist</button>
+  </section>
+
+  <section id="music">
     <h2>🎶 Music Projects</h2>
 
     <label for="volume">Volume Control</label>
     <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
 
-    <div class="track">
+    <div class="track" id="track-dancehall">
+      <img src="logo.png" alt="Track Logo">
       <strong>DANCEHALL</strong>
       <audio id="dancehall" controls>
-        <source src="dancehall.mp3" type="audio/mpeg">
+        <source src="DANCEHALL.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
 
-    <div class="track">
+    <div class="track" id="track-trap">
+      <img src="logo.png" alt="Track Logo">
       <strong>TRAP</strong>
       <audio id="trap" controls>
         <source src="trap.mp3" type="audio/mpeg">
@@ -169,55 +234,33 @@
     </div>
   </section>
 
-  <section class="about">
-    <h2>🧑‍🎤 About Me</h2>
-    <p>
-      Welcome to WOP CREATIVES! I'm a passionate music producer blending genres from dancehall to trap. This site is my personal vault of sound—crafted to inspire, energize, and connect. Explore the tracks and feel the rhythm.
-    </p>
-  </section>
-
-  <section class="contact">
-    <h2>📞 Contact</h2>
-    <p>
-      Email: <strong>wopcreatives@example.com</strong><br />
-      Instagram: <em>@wopcreatives</em><br />
-      Twitter: <em>@wopcreatives</em>
-    </p>
-  </section>
-
   <footer>
     &copy; 2025 WOP CREATIVES. All rights reserved.
   </footer>
 
   <script>
-    // Theme toggle
-    const toggleBtn = document.getElementById("themeToggle");
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
-      document.querySelector("header").classList.toggle("light-mode");
-      document.querySelectorAll("section").forEach(el => el.classList.toggle("light-mode"));
-      document.querySelectorAll(".about, .contact, footer").forEach(el => el.classList.toggle("light-mode"));
+    // Theme toggle menu
+    const themeToggle = document.getElementById("themeToggle");
+    const settingsMenu = document.getElementById("settingsMenu");
+    const aboutPopup = document.getElementById("aboutPopup");
+
+    themeToggle.addEventListener("click", () => {
+      settingsMenu.style.display = settingsMenu.style.display === "block" ? "none" : "block";
+      aboutPopup.style.display = "none";
     });
+
+    function setTheme(mode) {
+      document.body.classList.toggle("light-mode", mode === "light");
+      settingsMenu.style.display = "none";
+    }
+
+    function toggleAbout() {
+      aboutPopup.style.display = aboutPopup.style.display === "block" ? "none" : "block";
+    }
 
     // Volume control
     const volumeSlider = document.getElementById("volume");
     const dancehall = document.getElementById("dancehall");
     const trap = document.getElementById("trap");
 
-    volumeSlider.addEventListener("input", function() {
-      dancehall.volume = this.value;
-      trap.volume = this.value;
-    });
-
-    // Keyboard shortcuts
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "1") {
-        dancehall.play();
-      } else if (e.key === "2") {
-        trap.play();
-      }
-    });
-  </script>
-
-</body>
-</html>
+    volumeSlider
