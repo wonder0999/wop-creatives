@@ -3,259 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="WOP CREATIVES is a personal music hub featuring Dancehall and Trap tracks. Explore and play music directly from the site." />
-  <title>WOP CREATIVES</title>
+  <title>WONDER-ARTPROMO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #00ffd5, #ff00aa);
-      background-size: 400% 400%;
-      animation: gradientShift 30s ease infinite;
-      color: #f0f0f0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #f8f8f8, #001f3f);
+      color: #fff;
+      padding: 2rem;
     }
 
     header {
-      background-color: rgba(26, 26, 26, 0.9);
-      padding: 30px 20px;
       text-align: center;
-      border-bottom: 2px solid #00ffd5;
+      margin-bottom: 2rem;
     }
 
-    header img {
-      height: 60px;
-      margin-bottom: 10px;
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: #00ffd5;
+    p.description {
+      font-size: 1.5rem;
+      color: #dcdcdc;
     }
 
-    .controls {
+    .section {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .section h2 {
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .media-list {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
       flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .controls button, #themeToggle {
-      background-color: #00ffd5;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    #themeToggle {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.2em;
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    #settingsMenu {
-      display: none;
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      background-color: #1a1a1a;
-      border: 1px solid #00ffd5;
+    .media-item {
+      background-color: #001f3f;
       border-radius: 10px;
-      padding: 10px;
-      z-index: 1000;
+      padding: 1rem;
+      flex: 1 1 250px;
+      color: #fff;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
-    #settingsMenu button {
-      display: block;
+    .media-item:hover {
+      transform: scale(1.05);
+    }
+
+    audio, video {
       width: 100%;
-      margin: 5px 0;
-      border-radius: 50px;
+      border-radius: 10px;
     }
 
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
+    img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
-    h2 {
-      color: #00ffd5;
-      border-bottom: 1px solid #333;
-      padding-bottom: 5px;
-      margin-top: 40px;
+    button {
+      background-color: #003366;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .track {
-      margin: 20px 0;
+    button:hover {
+      background-color: #0055aa;
+    }
+
+    form {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    .track img {
-      height: 40px;
-    }
-
-    .track strong {
-      font-size: 1.2em;
-    }
-
-    audio {
-      width: 100%;
-    }
-
-    #volume {
-      width: 100%;
-      margin-top: 10px;
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
     }
 
     footer {
       text-align: center;
-      padding: 15px;
-      background-color: rgba(17, 17, 17, 0.9);
-      font-size: 0.9em;
-      color: #aaa;
-      margin-top: 40px;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ccc;
     }
 
-    .highlight {
-      background-color: #00ffd5;
-      color: #000;
-      padding: 5px;
-      border-radius: 5px;
-    }
-
-    #aboutPopup {
-      display: none;
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      background-color: #1a1a1a;
-      border: 1px solid #00ffd5;
-      border-radius: 10px;
-      padding: 15px;
-      max-width: 300px;
-      z-index: 1000;
-      color: #f0f0f0;
-    }
-
-    #searchInput {
-      padding: 8px;
-      border-radius: 50px;
-      border: none;
-      width: 200px;
-    }
-
-    /* Light Mode Styles */
-    body.light-mode {
-      background: #ffffff;
-      color: #000000;
-      animation: none;
-    }
-
-    header.light-mode {
-      background-color: #f0f0f0;
-      color: #000000;
-      border-bottom: 2px solid #00ffd5;
-    }
-
-    footer.light-mode {
-      background-color: #ddd;
-      color: #333;
+    @media (max-width: 600px) {
+      .media-list {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-
-  <button id="themeToggle">⚙️</button>
-
-  <div id="settingsMenu">
-    <button onclick="setTheme('light')">🌞 Daylight</button>
-    <button onclick="setTheme('dark')">🌙 Night Light</button>
-    <button onclick="toggleAbout()">🧑‍🎤 About</button>
-  </div>
-
-  <div id="aboutPopup">
-    <h3>About WOP CREATIVES</h3>
-    <p>
-      I'm a passionate music producer blending genres from dancehall to trap. This site is my personal vault of sound—crafted to inspire, energize, and connect. Explore the tracks and feel the rhythm.
-    </p>
-  </div>
-
   <header>
-    <img src="logo.png" alt="WOP CREATIVES Logo">
-    <h1>WOP CREATIVES</h1>
+    <h1>WONDER-ARTPROMO</h1>
+    <p class="description">HOME OF ARTS</p>
   </header>
 
-  <section class="controls">
-    <input type="text" id="searchInput" placeholder="Search song name">
-    <button onclick="searchTrack()">🔍 Search</button>
-    <button onclick="document.getElementById('music').scrollIntoView({ behavior: 'smooth' })">📂 Playlist</button>
-  </section>
-
-  <section id="music">
-    <h2>🎶 Music Projects</h2>
-
-    <label for="volume">Volume Control</label>
-    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-
-    <div class="track" id="track-dancehall">
-      <img src="logo.png" alt="Track Logo">
-      <strong>DANCEHALL</strong>
-      <audio id="dancehall" controls>
-        <source src="DANCEHALL.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <div class="section">
+    <h2>🎵 Beats (MP3)</h2>
+    <div class="media-list">
+      <div class="media-item">
+        <p>beat1.mp3</p>
+        <audio controls src="beat1.mp3"></audio>
+      </div>
+      <div class="media-item">
+        <p>beat2.mp3</p>
+        <audio controls src="beat2.mp3"></audio>
+      </div>
     </div>
+  </div>
 
-    <div class="track" id="track-trap">
-      <img src="logo.png" alt="Track Logo">
-      <strong>TRAP</strong>
-      <audio id="trap" controls>
-        <source src="trap.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <div class="section">
+    <h2>🖼️ Images (PNG, JPG)</h2>
+    <div class="media-list">
+      <div class="media-item">
+        <p>artwork1.png</p>
+        <img src="artwork1.png" alt="Artwork 1" />
+      </div>
+      <div class="media-item">
+        <p>design2.jpg</p>
+        <img src="design2.jpg" alt="Design 2" />
+      </div>
     </div>
-  </section>
+  </div>
+
+  <div class="section">
+    <h2>🎬 Videos (MP4, MOV)</h2>
+    <div class="media-list">
+      <div class="media-item">
+        <p>promo.mp4</p>
+        <video controls src="promo.mp4"></video>
+      </div>
+      <div class="media-item">
+        <p>clip.mov</p>
+        <video controls src="clip.mov"></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📩 Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
 
   <footer>
-    &copy; 2025 WOP CREATIVES. All rights reserved.  
-    <br><br>
-    <button onclick="toggleAbout()">🧑‍🎤 About</button>
+    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
   </footer>
-
-  <script>
-    // Settings menu toggle
-    const themeToggle = document.getElementById("themeToggle");
-    const settingsMenu = document.getElementById("settingsMenu");
-    const aboutPopup = document.getElementById("aboutPopup");
-
-    themeToggle.addEventListener("click", () => {
-      settingsMenu.style.display = settingsMenu.style.display === "block" ? "none" : "block";
-      aboutPopup.style.display = "none";
-    });
-
-    function setTheme(mode) {
-      document.body.classList.toggle("light-mode", mode === "light");
-      settingsMenu.style.display = "none";
-    }
-
-    function toggleAbout() {
-      aboutPopup.style.display = aboutPopup.style.display === "block" ? "none"
+</body>
+</html>
