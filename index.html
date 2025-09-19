@@ -23,19 +23,15 @@
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #87CEEB, #001f3f); /* SkyBlue to DarkBlue */
+      background: linear-gradient(to bottom right, #87CEEB, #001f3f);
       color: #fff;
       padding: 2rem;
     }
 
     header {
       text-align: center;
-      margin-bottom: 2rem;
-      position: sticky;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 3rem;
       padding: 1rem;
-      z-index: 1000;
     }
 
     h1 {
@@ -149,20 +145,6 @@
       margin-top: 2rem;
     }
 
-    .back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #003366;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      display: none;
-    }
-
     footer {
       text-align: center;
       margin-top: 2rem;
@@ -253,4 +235,19 @@
 
   <div class="qr-section">
     <h2>📷 Share with QR Code</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
+  </div>
+
+  <footer>
+    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
+  </footer>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+    }
+  </script>
+</body>
+</html>
