@@ -11,6 +11,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #0f0f0f;
       color: #f0f0f0;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     header {
@@ -18,6 +19,7 @@
       padding: 30px 20px;
       text-align: center;
       border-bottom: 2px solid #00ffd5;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     header h1 {
@@ -30,6 +32,7 @@
       padding: 20px;
       max-width: 800px;
       margin: auto;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     h2 {
@@ -58,6 +61,7 @@
       padding: 20px;
       border-radius: 8px;
       margin-top: 20px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     footer {
@@ -67,16 +71,61 @@
       font-size: 0.9em;
       color: #aaa;
       margin-top: 40px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
+    #themeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: #00ffd5;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    /* Light Mode Styles */
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    header.light-mode {
+      background-color: #f0f0f0;
+      color: #000000;
+      border-bottom: 2px solid #00ffd5;
+    }
+
+    section.light-mode,
+    .about.light-mode,
+    .contact.light-mode {
+      background-color: #f9f9f9;
+      color: #000000;
+    }
+
+    footer.light-mode {
+      background-color: #ddd;
+      color: #333;
     }
   </style>
 </head>
 <body>
+
+  <button id="themeToggle">⚙️ Settings</button>
 
   <header>
     <h1>WOP CREATIVES</h1>
@@ -85,18 +134,21 @@
   <section>
     <h2>🎶 Music Projects</h2>
 
+    <label for="volume">Volume Control</label>
+    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+
     <div class="track">
-      <strong>dancehall</strong>
-      <audio controls>
-        <source src="dancehall.mp3" type="audio/mpeg" />
+      <strong>DANCEHALL</strong>
+      <audio id="dancehall" controls>
+        <source src="DANCEHALL.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
 
     <div class="track">
       <strong>TRAP</strong>
-      <audio controls>
-        <source src="trap.mp3" type="audio/mpeg" />
+      <audio id="trap" controls>
+        <source src="trap.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -122,68 +174,35 @@
     &copy; 2025 WOP CREATIVES. All rights reserved.
   </footer>
 
-</body><script>
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "1") {
-      document.getElementById("dancehall").play();
-    } else if (e.key === "2") {
-      document.getElementById("trap").play();
-    }
-  });
-
-  const volumeSlider = document.getElementById("volume");
-  const dancehall = document.getElementById("dancehall");
-  const trap = document.getElementById("trap");
-
-  volumeSlider.addEventListener("input", function() {
-    dancehall.volume = this.value;
-    trap.volume = this.value;
-  });
-  </script>
-    <label for="volume">Volume:</label>
-<input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-
-<audio id="dancehall" controls>
-  <source src="DANCEHALL.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="trap" controls>
-  <source src="trap.mp3" type="audio/mpeg">
-      </audio>
-          <button id="themeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-  ⚙️ Settings
-  </button>
-                                 body.light-mode {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-header.light-mode {
-  background-color: #f0f0f0;
-  color: #000000;
-  border-bottom: 2px solid #00ffd5;
-}
-
-section.light-mode,
-.about.light-mode,
-.contact.light-mode {
-  background-color: #f9f9f9;
-  color: #000000;
-}
-
-footer.light-mode {
-  background-color: #ddd;
-  color: #333;
-}
   <script>
-  const toggleBtn = document.getElementById("themeToggle");
+    // Theme toggle
+    const toggleBtn = document.getElementById("themeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      document.querySelector("header").classList.toggle("light-mode");
+      document.querySelectorAll("section").forEach(el => el.classList.toggle("light-mode"));
+      document.querySelectorAll(".about, .contact, footer").forEach(el => el.classList.toggle("light-mode"));
+    });
 
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    document.querySelector("header").classList.toggle("light-mode");
-    document.querySelectorAll("section").forEach(el => el.classList.toggle("light-mode"));
-    document.querySelectorAll(".about, .contact, footer").forEach(el => el.classList.toggle("light-mode"));
-  });
+    // Volume control
+    const volumeSlider = document.getElementById("volume");
+    const dancehall = document.getElementById("dancehall");
+    const trap = document.getElementById("trap");
+
+    volumeSlider.addEventListener("input", function() {
+      dancehall.volume = this.value;
+      trap.volume = this.value;
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "1") {
+        dancehall.play();
+      } else if (e.key === "2") {
+        trap.play();
+      }
+    });
   </script>
-  
+
+</body>
 </html>
