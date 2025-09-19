@@ -16,10 +16,14 @@
   <script data-goatcounter="https://yourusername.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #f8f8f8, #001f3f);
+      background: linear-gradient(to bottom right, #87CEEB, #001f3f); /* SkyBlue to DarkBlue */
       color: #fff;
       padding: 2rem;
     }
@@ -27,6 +31,11 @@
     header {
       text-align: center;
       margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      z-index: 1000;
     }
 
     h1 {
@@ -53,6 +62,12 @@
       padding: 1.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .section h2 {
@@ -132,6 +147,20 @@
     .qr-section {
       text-align: center;
       margin-top: 2rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #003366;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
     }
 
     footer {
@@ -224,19 +253,4 @@
 
   <div class="qr-section">
     <h2>📷 Share with QR Code</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
-  </div>
-
-  <footer>
-    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
-  </footer>
-
-  <!-- PWA Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker Registered'));
-    }
-  </script>
-</body>
-</html>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io
