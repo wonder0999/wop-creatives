@@ -12,7 +12,9 @@
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- Styles -->
+  <!-- GoatCounter Analytics -->
+  <script data-goatcounter="https://yourusername.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -37,6 +39,12 @@
     p.description {
       font-size: 1.5rem;
       color: #dcdcdc;
+    }
+
+    .logo {
+      width: 100px;
+      margin: 1rem auto;
+      display: block;
     }
 
     .section {
@@ -83,7 +91,7 @@
       cursor: pointer;
     }
 
-    button {
+    button, .download-btn {
       background-color: #003366;
       color: #fff;
       border: none;
@@ -92,9 +100,12 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+      display: inline-block;
+      text-decoration: none;
     }
 
-    button:hover {
+    button:hover, .download-btn:hover {
       background-color: #0055aa;
     }
 
@@ -109,6 +120,18 @@
       border-radius: 10px;
       border: none;
       font-size: 1rem;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .qr-section {
+      text-align: center;
+      margin-top: 2rem;
     }
 
     footer {
@@ -127,6 +150,7 @@
 </head>
 <body>
   <header>
+    <img src="logo.png" alt="Logo" class="logo" />
     <h1>WONDER-ARTPROMO</h1>
     <p class="description">HOME OF ARTS</p>
   </header>
@@ -135,12 +159,14 @@
     <h2>🎵 Beats (MP3)</h2>
     <div class="media-list">
       <div class="media-item">
-        <p>beat1.mp3</p>
-        <audio controls src="beat1.mp3"></audio>
+        <p>dancehall.mp3</p>
+        <audio controls src="dancehall.mp3"></audio>
+        <a href="dancehall.mp3" download class="download-btn">Download</a>
       </div>
       <div class="media-item">
-        <p>beat2.mp3</p>
-        <audio controls src="beat2.mp3"></audio>
+        <p>trap.mp3</p>
+        <audio controls src="trap.mp3"></audio>
+        <a href="trap.mp3" download class="download-btn">Download</a>
       </div>
     </div>
   </div>
@@ -151,10 +177,12 @@
       <div class="media-item">
         <p>artwork1.png</p>
         <img src="artwork1.png" alt="Artwork 1" />
+        <a href="artwork1.png" download class="download-btn">Download</a>
       </div>
       <div class="media-item">
         <p>design2.jpg</p>
         <img src="design2.jpg" alt="Design 2" />
+        <a href="design2.jpg" download class="download-btn">Download</a>
       </div>
     </div>
   </div>
@@ -165,10 +193,12 @@
       <div class="media-item">
         <p>promo.mp4</p>
         <video controls src="promo.mp4"></video>
+        <a href="promo.mp4" download class="download-btn">Download</a>
       </div>
       <div class="media-item">
         <p>clip.mov</p>
         <video controls src="clip.mov"></video>
+        <a href="clip.mov" download class="download-btn">Download</a>
       </div>
     </div>
   </div>
@@ -181,6 +211,20 @@
       <textarea rows="4" placeholder="Your Message"></textarea>
       <button type="submit">Send Message</button>
     </form>
+  </div>
+
+  <div class="section">
+    <h2>🔗 Follow Me</h2>
+    <div class="social-icons">
+      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://soundcloud.com/yourprofile" target="_blank"><i class="fab fa-soundcloud"></i></a>
+    </div>
+  </div>
+
+  <div class="qr-section">
+    <h2>📷 Share with QR Code</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
   </div>
 
   <footer>
