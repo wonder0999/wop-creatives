@@ -9,17 +9,30 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #00ffd5, #ff00aa);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       color: #f0f0f0;
       transition: background-color 0.3s, color 0.3s;
     }
 
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     header {
-      background-color: #1a1a1a;
+      background-color: rgba(26, 26, 26, 0.9);
       padding: 30px 20px;
       text-align: center;
       border-bottom: 2px solid #00ffd5;
       transition: background-color 0.3s, color 0.3s;
+    }
+
+    header img {
+      height: 60px;
+      margin-bottom: 10px;
     }
 
     header h1 {
@@ -57,7 +70,7 @@
     }
 
     .about, .contact {
-      background-color: #1a1a1a;
+      background-color: rgba(26, 26, 26, 0.9);
       padding: 20px;
       border-radius: 8px;
       margin-top: 20px;
@@ -67,7 +80,7 @@
     footer {
       text-align: center;
       padding: 15px;
-      background-color: #111;
+      background-color: rgba(17, 17, 17, 0.9);
       font-size: 0.9em;
       color: #aaa;
       margin-top: 40px;
@@ -100,8 +113,9 @@
 
     /* Light Mode Styles */
     body.light-mode {
-      background-color: #ffffff;
+      background: #ffffff;
       color: #000000;
+      animation: none;
     }
 
     header.light-mode {
@@ -128,6 +142,7 @@
   <button id="themeToggle">⚙️ Settings</button>
 
   <header>
+    <img src="logo.png" alt="WOP CREATIVES Logo">
     <h1>WOP CREATIVES</h1>
   </header>
 
