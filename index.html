@@ -9,12 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- GoatCounter Analytics -->
-  <script data-goatcounter="https://yourusername.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
   <style>
     html {
       scroll-behavior: smooth;
@@ -70,12 +64,6 @@
     p.description {
       font-size: 1.5rem;
       color: #dcdcdc;
-    }
-
-    .logo {
-      width: 100px;
-      margin: 1rem auto;
-      display: block;
     }
 
     .section {
@@ -191,70 +179,23 @@
   </style>
 </head>
 <body>
-  <div id="welcomeOverlay" style="
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 9999;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    color: white;
-  ">
-    <video autoplay muted loop playsinline style="
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-      z-index: -1;
-    ">
-      <source src="piano-cartoon.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
 
-    <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 2rem;">WONDER-ARTPROMO</h1>
-    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-      <button onclick="enterSite()" style="
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        background: linear-gradient(to right, #6a0dad, #001f3f);
-        border: none;
-        border-radius: 30px;
-        color: white;
-        cursor: pointer;
-      ">Continue</button>
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#music">Beats</a>
+    <a href="#photos">Images</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+    <a href="#fan-wall">Fan Wall</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#login">Login</a>
+  </nav>
 
-      <button onclick="goToLogin()" style="
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        background: linear-gradient(to right, #6a0dad, #001f3f);
-        border: none;
-        border-radius: 30px;
-        color: white;
-        cursor: pointer;
-      ">Sign In / Guest</button>
-    </div>
-  </div>
-
-  <script>
-    document.body.style.overflow = "hidden";
-
-    function enterSite() {
-      document.getElementById("welcomeOverlay").style.display = "none";
-      document.body.style.overflow = "auto";
-      window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" });
-    }
-
-    function goToLogin() {
-      document.getElementById("welcomeOverlay").style.display = "none";
-      document.body.style.overflow = "auto";
-      window.scrollTo({ top: document.getElementById("login").offsetTop, behavior: "smooth" });
-    }
-  </script>
+  <!-- Homepage Title -->
+  <header id="home">
+    <h1>WONDER-ARTPROMO</h1>
+    <p class="description">Your digital hub for beats, art, and vibes</p>
+  </header>
   <div class="section" id="music">
     <h2>🎵 Beats (MP3)</h2>
     <div class="media-list">
@@ -409,21 +350,6 @@
   </style>
 
   <script>
-    // Mobile nav shrink/expand
-    let lastScrollTop = 0;
-    const nav = document.querySelector("nav");
-    window.addEventListener("scroll", function () {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        nav.style.padding = "0.5rem";
-        nav.style.fontSize = "0.8rem";
-      } else {
-        nav.style.padding = "1rem";
-        nav.style.fontSize = "1rem";
-      }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    }, false);
-
     // Fan Wall
     document.getElementById("fanForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -476,12 +402,6 @@
       const player = document.getElementById("playlistPlayer");
       player.src = src;
       player.play();
-    }
-
-    // PWA Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker Registered'));
     }
   </script>
 </body>
