@@ -21,71 +21,6 @@
     }
 
     body {
-      <div id="welcomeOverlay" style="
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 9999;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    color: white;
-  ">
-    <video autoplay muted loop playsinline style="
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-      z-index: -1;
-    ">
-      <source src="piano-cartoon.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-
-    <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 2rem;">WONDER-ARTPROMO</h1>
-    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-      <button onclick="enterSite()" style="
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        background: linear-gradient(to right, #6a0dad, #001f3f);
-        border: none;
-        border-radius: 30px;
-        color: white;
-        cursor: pointer;
-      ">Continue</button>
-
-      <button onclick="goToLogin()" style="
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        background: linear-gradient(to right, #6a0dad, #001f3f);
-        border: none;
-        border-radius: 30px;
-        color: white;
-        cursor: pointer;
-      ">Sign In / Guest</button>
-    </div>
-  </div>
-
-  <script>
-    document.body.style.overflow = "hidden";
-
-    function enterSite() {
-      document.getElementById("welcomeOverlay").style.display = "none";
-      document.body.style.overflow = "auto";
-      window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" });
-    }
-
-    function goToLogin() {
-      document.getElementById("welcomeOverlay").style.display = "none";
-      document.body.style.overflow = "auto";
-      window.scrollTo({ top: document.getElementById("login").offsetTop, behavior: "smooth" });
-    }
-  </script>
-
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(to bottom right, #87CEEB, #001f3f);
@@ -256,20 +191,70 @@
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#music">Music</a>
-    <a href="#videos">Videos</a>
-    <a href="#photos">Photos</a>
-    <a href="#contact">Contact</a>
-    <a href="#settings">Settings</a>
-  </nav>
+  <div id="welcomeOverlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+  ">
+    <video autoplay muted loop playsinline style="
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      z-index: -1;
+    ">
+      <source src="piano-cartoon.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-  <header id="home">
-    <img src="logo.png" alt="Logo" class="logo" />
-    <h1>WONDER-ARTPROMO</h1>
-    <p class="description">HOME OF ARTS</p>
-  </header>
+    <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 2rem;">WONDER-ARTPROMO</h1>
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+      <button onclick="enterSite()" style="
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        background: linear-gradient(to right, #6a0dad, #001f3f);
+        border: none;
+        border-radius: 30px;
+        color: white;
+        cursor: pointer;
+      ">Continue</button>
+
+      <button onclick="goToLogin()" style="
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        background: linear-gradient(to right, #6a0dad, #001f3f);
+        border: none;
+        border-radius: 30px;
+        color: white;
+        cursor: pointer;
+      ">Sign In / Guest</button>
+    </div>
+  </div>
+
+  <script>
+    document.body.style.overflow = "hidden";
+
+    function enterSite() {
+      document.getElementById("welcomeOverlay").style.display = "none";
+      document.body.style.overflow = "auto";
+      window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" });
+    }
+
+    function goToLogin() {
+      document.getElementById("welcomeOverlay").style.display = "none";
+      document.body.style.overflow = "auto";
+      window.scrollTo({ top: document.getElementById("login").offsetTop, behavior: "smooth" });
+    }
+  </script>
   <div class="section" id="music">
     <h2>🎵 Beats (MP3)</h2>
     <div class="media-list">
@@ -340,11 +325,11 @@
     <h2>⚙️ Settings</h2>
     <p><a href="https://webqr.com/" target="_blank" class="download-btn">Open QR Scanner</a></p>
     <button class="share-btn" onclick="shareSite()">Share This Site</button>
-  </div>
 
-  <div class="qr-section">
-    <h2>📷 Share with QR Code</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yourusername.github.io/your-repo-name/" alt="QR Code">
+    <div class="qr-section" style="margin-top:2rem;">
+      <h3>📷 Share with QR Code</h3>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://yourusername.github.io/your-repo-name/" alt="QR Code" style="width:100px; height:100px;" />
+    </div>
   </div>
 
   <footer>
@@ -497,64 +482,6 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('Service Worker Registered'));
-    }
-  </script>
-</body>
-</html>
-  <div class="section" id="blog">
-    <h2>📝 Blog</h2>
-    <div class="media-item">
-      <h3>Behind the Beat: Dancehall Vibe</h3>
-      <p>This track came to life on a rainy night in Lilongwe. I wanted something that felt like motion and memory...</p>
-    </div>
-    <div class="media-item">
-      <h3>Design Secrets: Artwork1</h3>
-      <p>I used a mix of digital brushwork and layered textures to create the glowing effect. Fans say it reminds them of neon dreams...</p>
-    </div>
-  </div>
-
-  <div class="section" id="newsletter">
-    <h2>📬 Join the Newsletter</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <button type="submit">Subscribe</button>
-    </form>
-    <p style="margin-top:1rem;">Stay updated with new beats, drops, and exclusive content.</p>
-  </div>
-
-  <div class="section" id="leaderboard">
-    <h2>🏆 Fan Leaderboard</h2>
-    <ul style="list-style:none; padding:0;">
-      <li><strong>🔥 Zama</strong> – 5 shoutouts</li>
-      <li><strong>🎨 Tasha</strong> – 3 art likes</li>
-      <li><strong>🎧 JayBeats</strong> – 2 beat downloads</li>
-    </ul>
-    <p style="margin-top:1rem;">Want to be featured? Drop a shoutout or share your favorite track!</p>
-  </div>
-  <div class="section" id="login">
-    <h2>🔐 Login</h2>
-    <form id="loginForm">
-      <input type="email" id="loginEmail" placeholder="Email" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <button onclick="continueAsGuest()">Continue as Guest</button>
-    <p id="welcomeMessage" style="margin-top:1rem;"></p>
-    <p style="margin-top:1rem;">Coming soon: Login with Google or Facebook</p>
-  </div>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = document.getElementById("loginEmail").value;
-      const password = document.getElementById("loginPassword").value;
-      document.getElementById("welcomeMessage").textContent = `Welcome back, ${email.split('@')[0]}!`;
-      this.reset();
-    });
-
-    function continueAsGuest() {
-      document.getElementById("welcomeMessage").textContent = "Welcome, Guest 👋";
     }
   </script>
 </body>
