@@ -21,6 +21,71 @@
     }
 
     body {
+      <div id="welcomeOverlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+  ">
+    <video autoplay muted loop playsinline style="
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      z-index: -1;
+    ">
+      <source src="piano-cartoon.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 2rem;">WONDER-ARTPROMO</h1>
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+      <button onclick="enterSite()" style="
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        background: linear-gradient(to right, #6a0dad, #001f3f);
+        border: none;
+        border-radius: 30px;
+        color: white;
+        cursor: pointer;
+      ">Continue</button>
+
+      <button onclick="goToLogin()" style="
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        background: linear-gradient(to right, #6a0dad, #001f3f);
+        border: none;
+        border-radius: 30px;
+        color: white;
+        cursor: pointer;
+      ">Sign In / Guest</button>
+    </div>
+  </div>
+
+  <script>
+    document.body.style.overflow = "hidden";
+
+    function enterSite() {
+      document.getElementById("welcomeOverlay").style.display = "none";
+      document.body.style.overflow = "auto";
+      window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" });
+    }
+
+    function goToLogin() {
+      document.getElementById("welcomeOverlay").style.display = "none";
+      document.body.style.overflow = "auto";
+      window.scrollTo({ top: document.getElementById("login").offsetTop, behavior: "smooth" });
+    }
+  </script>
+
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(to bottom right, #87CEEB, #001f3f);
