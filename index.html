@@ -1,408 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Your Streaming Site</h1>
+        </header>
+        <nav class="search-bar">
+            <input type="text" placeholder="Search...">
+        </nav>
+        <main>
+            <section class="music-player">
+                <!-- Music player code here -->
+            </section>
+            <section class="video-player">
+                <!-- Video player code here -->
+            </section>
+            <section class="playlist">
+                <!-- Playlist code here -->—
+              <!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WONDER-ARTPROMO</title>
-
-  <!-- Fonts and Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wonder's Stream Site</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #87CEEB, #001f3f);
+      font-family: Arial, sans-serif;
+      background: #121212;
       color: #fff;
+      margin: 0;
       padding: 0;
     }
-
-    nav {
-      background-color: #003366;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0.5rem 1rem;
-      font-weight: bold;
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-      background-color: #0055aa;
-      transition: background-color 0.3s ease;
-    }
-
-    nav a:hover {
-      background-color: #0077cc;
-    }
-
-    header {
+    header, footer {
       text-align: center;
-      padding: 2rem 1rem 1rem;
+      padding: 1em;
+      background: #1db954;
     }
-
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      color: #ffffff;
-      text-shadow: 2px 2px 4px #000;
-    }
-
-    p.description {
-      font-size: 1.5rem;
-      color: #dcdcdc;
-    }
-
-    .section {
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      animation: fadeIn 1s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .section h2 {
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-
-    .media-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .media-item {
-      background-color: #001f3f;
-      border-radius: 10px;
-      padding: 1rem;
-      flex: 1 1 250px;
-      color: #fff;
+    .search-bar {
       text-align: center;
-      transition: transform 0.3s ease;
+      margin: 1em;
     }
-
-    .media-item:hover {
-      transform: scale(1.05);
+    .search-bar input {
+      padding: 0.5em;
+      width: 60%;
+      border-radius: 5px;
+      border: none;
     }
-
-    audio, video {
-      width: 100%;
+    .player-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 1em;
+    }
+    .music-player, .video-player {
+      width: 45%;
+      background: #282828;
+      padding: 1em;
       border-radius: 10px;
     }
-
-    img {
-      width: 100%;
-      border-radius: 10px;
+    .playlist {
+      margin-top: 1em;
+    }
+    .playlist ul {
+      list-style: none;
+      padding: 0;
+    }
+    .playlist li {
+      padding: 0.5em;
       cursor: pointer;
     }
-
-    button, .download-btn, .share-btn, .track-btn {
-      background-color: #003366;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 0.5rem;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    button:hover, .download-btn:hover, .share-btn:hover, .track-btn:hover {
-      background-color: #0055aa;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    input, textarea {
-      padding: 0.75rem;
-      border-radius: 10px;
-      border: none;
-      font-size: 1rem;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      color: #fff;
-      font-size: 1.5rem;
-      text-decoration: none;
-    }
-
-    .qr-section {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin: 2rem;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-
-    @media (max-width: 600px) {
-      .media-list {
-        flex-direction: column;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
+    .playlist li:hover {
+      background: #1db954;
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation Bar -->
-  <nav>
-    <a href="#music">Beats</a>
-    <a href="#photos">Images</a>
-    <a href="#videos">Videos</a>
-    <a href="#contact">Contact</a>
-    <a href="#fan-wall">Fan Wall</a>
-    <a href="#playlist">Playlist</a>
-    <a href="#login">Login</a>
-  </nav>
-
-  <!-- Homepage Title -->
-  <header id="home">
-    <h1>WONDER-ARTPROMO</h1>
-    <p class="description">Your digital hub for beats, art, and vibes</p>
+  <header>
+    <h1>🎶 Wonder's Stream Site 🎥</h1>
   </header>
-  <div class="section" id="music">
-    <h2>🎵 Beats (MP3)</h2>
-    <div class="media-list">
-      <div class="media-item">
-        <p>dancehall.mp3</p>
-        <audio controls src="dancehall.mp3"></audio>
-        <a href="dancehall.mp3" download class="download-btn">Download</a>
-      </div>
-      <div class="media-item">
-        <p>trap.mp3</p>
-        <audio controls src="trap.mp3"></audio>
-        <a href="trap.mp3" download class="download-btn">Download</a>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search music...">
+  </div>
+
+  <div class="player-section">
+    <div class="music-player">
+      <h2>Music Player</h2>
+      <audio id="audioPlayer" controls></audio>
+      <div class="playlist">
+        <ul id="playlist">
+          <li data-src="song1.mp3">Song One</li>
+          <li data-src="song2.mp3">Song Two</li>
+          <li data-src="song3.mp3">Song Three</li>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="section" id="photos">
-    <h2>🖼️ Images (PNG, JPG)</h2>
-    <div class="media-list">
-      <div class="media-item">
-        <p>artwork1.png</p>
-        <img src="artwork1.png" alt="Artwork 1" />
-        <a href="artwork1.png" download class="download-btn">Download</a>
-      </div>
-      <div class="media-item">
-        <p>design2.jpg</p>
-        <img src="design2.jpg" alt="Design 2" />
-        <a href="design2.jpg" download class="download-btn">Download</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="videos">
-    <h2>🎬 Videos (MP4, MOV)</h2>
-    <div class="media-list">
-      <div class="media-item">
-        <p>promo.mp4</p>
-        <video controls src="promo.mp4"></video>
-        <a href="promo.mp4" download class="download-btn">Download</a>
-      </div>
-      <div class="media-item">
-        <p>clip.mov</p>
-        <video controls src="clip.mov"></video>
-        <a href="clip.mov" download class="download-btn">Download</a>
-      </div>
-    </div>
-  </div>
-  <div class="section" id="contact">
-    <h2>📩 Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="4" placeholder="Your Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-
-  <div class="section">
-    <h2>🔗 Follow Me</h2>
-    <div class="social-icons">
-      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://soundcloud.com/yourprofile" target="_blank"><i class="fab fa-soundcloud"></i></a>
-    </div>
-  </div>
-
-  <div class="section" id="settings">
-    <h2>⚙️ Settings</h2>
-    <p><a href="https://webqr.com/" target="_blank" class="download-btn">Open QR Scanner</a></p>
-    <button class="share-btn" onclick="shareSite()">Share This Site</button>
-
-    <div class="qr-section" style="margin-top:2rem;">
-      <h3>📷 Share with QR Code</h3>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://yourusername.github.io/your-repo-name/" alt="QR Code" style="width:100px; height:100px;" />
+    <div class="video-player">
+      <h2>Video Player</h2>
+      <video width="100%" controls>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
 
   <footer>
-    &copy; 2025 WONDER-ARTPROMO. All rights reserved.
+    <p>&copy; 2025 Wonder's Stream Site</p>
   </footer>
-  <div class="section" id="fan-wall">
-    <h2>💬 Fan Wall</h2>
-    <form id="fanForm">
-      <input type="text" id="fanName" placeholder="Your Name or Nickname" required />
-      <input type="text" id="fanFavorite" placeholder="Favorite Beat or Art" />
-      <textarea id="fanMessage" rows="2" placeholder="Your Shoutout or Emoji"></textarea>
-      <button type="submit">Post Shoutout</button>
-    </form>
-    <div id="fanMessages" style="margin-top:1rem;"></div>
-  </div>
-
-  <div class="section" id="beat-store">
-    <h2>🛒 Beat Store</h2>
-    <p>Download or buy beats directly:</p>
-    <a href="https://gumroad.com" target="_blank" class="download-btn">Visit Store</a>
-  </div>
-
-  <div class="section" id="dark-mode">
-    <h2>🌙 Theme</h2>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  </div>
-
-  <div class="section" id="gallery-slider">
-    <h2>🖼️ Art Gallery Slider</h2>
-    <div style="overflow-x:auto; white-space:nowrap;">
-      <img src="artwork1.png" style="width:200px; margin-right:10px;" />
-      <img src="design2.jpg" style="width:200px; margin-right:10px;" />
-      <img src="logo.png" style="width:200px;" />
-    </div>
-  </div>
-
-  <div class="section" id="visitor-counter">
-    <h2>🔥 Fans & Visitors</h2>
-    <p>This site has been visited by <span id="visitorCount">...</span> awesome people!</p>
-  </div>
-
-  <div class="section" id="intro-animation">
-    <h2>✨ Welcome Animation</h2>
-    <p id="introText" style="font-size:1.2rem; text-align:center;">Loading your vibe...</p>
-  </div>
-  <div class="section" id="playlist">
-    <h2>🎶 Music Playlist</h2>
-    <div id="playerContainer" style="background:#002244; border-radius:15px; padding:1rem;">
-      <audio id="playlistPlayer" controls style="width:100%; border-radius:10px;"></audio>
-      <ul id="trackList" style="list-style:none; padding:0; margin-top:1rem;">
-        <li style="margin-bottom:0.5rem;">
-          <button class="track-btn" onclick="playTrack('dancehall.mp3')">🎵 Dancehall Vibe</button>
-        </li>
-        <li style="margin-bottom:0.5rem;">
-          <button class="track-btn" onclick="playTrack('trap.mp3')">🎵 Trap Energy</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <style>
-    .track-btn {
-      width: 100%;
-      background-color: #004080;
-      color: #fff;
-      border: none;
-      padding: 0.75rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .track-btn:hover {
-      background-color: #0066cc;
-    }
-  </style>
 
   <script>
-    // Fan Wall
-    document.getElementById("fanForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("fanName").value;
-      const fav = document.getElementById("fanFavorite").value;
-      const msg = document.getElementById("fanMessage").value;
-      const post = `<p><strong>${name}</strong> ❤️ ${fav}<br>${msg}</p>`;
-      document.getElementById("fanMessages").innerHTML += post;
-      this.reset();
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playlistItems = document.querySelectorAll('#playlist li');
+    const searchInput = document.getElementById('searchInput');
+
+    playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        audioPlayer.src = item.getAttribute('data-src');
+        audioPlayer.play();
+      });
     });
 
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-      document.body.style.background = document.body.style.background.includes("#001f3f")
-        ? "linear-gradient(to bottom right, #111, #333)"
-        : "linear-gradient(to bottom right, #87CEEB, #001f3f)";
-    }
-
-    // Visitor Counter (mock)
-    document.getElementById("visitorCount").innerText = Math.floor(Math.random() * 5000 + 1000);
-
-    // Intro Animation
-    let intro = document.getElementById("introText");
-    let dots = 0;
-    let interval = setInterval(() => {
-      intro.textContent = "Loading your vibe" + ".".repeat(dots % 4);
-      dots++;
-      if (dots > 10) {
-        clearInterval(interval);
-        intro.textContent = "You're in 🎉";
-      }
-    }, 300);
-
-    // Share button logic
-    function shareSite() {
-      const shareData = {
-        title: 'WONDER-ARTPROMO',
-        text: 'Check out my art projects!',
-        url: window.location.href
-      };
-      if (navigator.share) {
-        navigator.share(shareData).catch(console.error);
-      } else {
-        alert("Sharing not supported on this device.");
-      }
-    }
-
-    // Music Player
-    function playTrack(src) {
-      const player = document.getElementById("playlistPlayer");
-      player.src = src;
-      player.play();
-    }
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      playlistItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
   </script>
 </body>
 </html>
