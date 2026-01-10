@@ -325,11 +325,4 @@ audio.ontimeupdate=()=>{
 };
 
 audio.onplay=()=>{playBtn.innerText="⏸";fplayBtn.innerText="⏸";}
-audio.onpause=()=>{playBtn.innerText="▶";fplayBtn.innerText="▶";}
-
-function seek(e){
-  audio.currentTime=(e.offsetX/e.target.offsetWidth)*audio.duration;
-}
-
-function openFull(){full.style.display="flex";}
-function close
+audio.onpause=()=>{playBtn.innerText="▶";f
