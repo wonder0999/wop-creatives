@@ -1,44 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Download Dancehall</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .box {
-      text-align: center;
-      padding: 40px;
-      background: #222;
-      border-radius: 10px;
-    }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 15px 30px;
-      background: #1db954;
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      border-radius: 5px;
-    }
-    a:hover {
-      background: #17a44a;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Wonder Streaming Site</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg-main: linear-gradient(180deg,#0f1226,#0b0d18);
+  --bg-card: #1a1d35;
+  --bg-player: rgba(26,29,53,.9);
+  --accent: #1db954;
+  --accent2: #0ea5e9;
+  --text-main: #ffffff;
+  --text-muted: #b4b6c8;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,sans-serif;
+}
+
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+}
+
+header{
+  padding:18px;
+  text-align:center;
+  background:linear-gradient(90deg,#1a1d35,#23265a);
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+header h1{
+  font-size:1.5rem;
+  letter-spacing:1px;
+}
+
+.search{
+  max-width:420px;
+  margin:15px auto;
+}
+
+.search input{
+  width:100%;
+  padding:12px;
+  border-radius:25px;
+  border:none;
+  outline:none;
+  background:#23265a;
+  color:#fff;
+}
+
+main{
+  padding:20px;
+  padding-bottom:120px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:var(--bg-card);
+  border-radius:18px;
+  padding:12px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 15px 35px rgba(0,0,0,.4);
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(14,165,233,.35);
+}
+
+.card img{
+  width:100%;
+  height:170px;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+.card h3{
+  font-size:.95rem;
+  margin-top:8px;
+}
+
+.card p{
+  font-size:.8rem;
+  color:var(--text-muted);
+}
+
+.player{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--bg-player);
+  backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,255,255,.15);
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.info img{
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  object-fit:cover;
+}
+
+.info small{
+  color:var(--text-muted);
+}
+
+.controls button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:22px;
+  margin:0 6px;
+  cursor:pointer;
+}
+
+.controls button:hover{
+  color:var(--accent);
+  text-shadow:0 0 8px var(--accent);
+}
+
+.progress{
+  width:100%;
+  height:4px;
+  background:#2c2f52;
+  border-radius:10px;
+  margin-top:5px;
+  cursor:pointer;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:10px;
+}
+
+.timeline{
+  font-size:.75rem;
+  color:var(--text-muted);
+  margin-top:4px;
+}
+
+.full{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#23265a,#0b0d18);
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.full img{
+  width:270px;
+  height:270px;
+  border-radius:22px;
+  box-shadow:0 0 40px rgba(0,0,0,.8);
+}
+
+.full h2{
+  margin-top:14px;
+}
+
+.full p{
+  color:var(--text-muted);
+  margin-bottom:18px;
+}
+
+.download{
+  margin-top:10px;
+  color:var(--accent);
+  text-decoration:none;
+}
+
+.close{
+  margin-top:15px;
+  padding:8px 20px;
+  border-radius:20px;
+  border:none;
+  background:#23265a;
+  color:#fff;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>Dancehall</h1>
-    <p>Click below to download the song</p>
-    <a href="dancehall.mp3" download>Download Dancehall.mp3</a>
+
+<header>
+  <h1>Welcome to Wonder Streaming Site</h1>
+</header>
+
+<div class="search">
+  <input placeholder="Search music..." oninput="search(this.value)">
+</div>
+
+<main>
+  <div class="grid" id="list"></div>
+</main>
+
+<div class="player">
+  <div class="info">
+    <img id="cover">
+    <div>
+      <div id="title">Select a song</div>
+      <small id="artist">Wonder</small>
+      <div class="progress" onclick="seek(event)">
+        <div class="bar" id="bar"></div>
+      </div>
+      <div class="timeline" id="timeline">0:00 / 0:00</div>
+    </div>
   </div>
-</body>
-</html>
+
+  <div class="controls">
+    <button onclick="shuffle()">🔀</button>
+    <button onclick="prev()">⏮</button>
+    <button id="playBtn" onclick="toggle()">▶</button>
+    <button onclick="next()">⏭</button>
+    <button onclick="openFull()">⛶</button>
+  </div>
+</div>
+
+<div class="full" id="full">
+  <img id="fcover">
+  <h2 id="ftitle"></h2>
+  <p id="fartist"></p>
+
+  <div class="controls">
+    <button onclick="prev()">⏮</button>
+    <button id="fplayBtn" onclick="toggle()">▶</button>
+    <button onclick="next()">⏭</button>
+  </div>
+
+  <div style="margin-top:15px;color:var(--text-muted)">
+    Lyrics panel (add lyrics later)
+  </div>
+
+  <a id="download" class="download" download>⬇ Download</a>
+  <button class="close" onclick="closeFull()">Close</button>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const songs=[
+  {t:"Trap",a:"Wonder",s:"music/trap.mp3",c:"covers/image 1.jpg"},
+  {t:"Dancehall",a:"Wonder",s:"music/dancehall.mp3",c:"covers/image 1.jpg"},
+  {t:"Keep the Page",a:"Wonder",s:"music/Keep the page_by wonder.mp3",c:"covers/image 1.jpg"},
+  {t:"Keep (Girl Version)",a:"Wonder",s:"music/Keep girl version.mp3",c:"covers/image 1.jpg"}
+];
+
+let i=0;
+const list=document.getElementById("list");
+const audio=document.getElementById("audio");
+const playBtn=document.getElementById("playBtn");
+const fplayBtn=document.getElementById("fplayBtn");
+const timeline=document.getElementById("timeline");
+
+songs.forEach((x,n)=>{
+  list.innerHTML+=`
+    <div class="card" onclick="play(${n})">
+      <img src="${x.c}">
+      <h3>${x.t}</h3>
+      <p>${x.a}</p>
+    </div>
+  `;
+});
+
+function play(n){
+  i=n;
+  audio.src=songs[i].s;
+  audio.play();
+  update();
+}
+
+function toggle(){
+  if(audio.paused){
+    audio.play();
+  }else{
+    audio.pause();
+  }
+}
+
+function next(){i=(i+1)%songs.length;play(i);}
+function prev(){i=(i-1+songs.length)%songs.length;play(i);}
+function shuffle(){play(Math.floor(Math.random()*songs.length));}
+
+function update(){
+  cover.src=fcover.src=songs[i].c;
+  title.innerText=ftitle.innerText=songs[i].t;
+  artist.innerText=fartist.innerText=songs[i].a;
+  download.href=songs[i].s;
+}
+
+audio.ontimeupdate=()=>{
+  if(audio.duration){
+    bar.style.width=(audio.currentTime/audio.duration)*100+"%";
+    timeline.innerText=formatTime(audio.currentTime)+" / "+formatTime(audio.duration);
+  }
+};
+
+audio.onplay=()=>{playBtn.innerText="⏸";fplayBtn.innerText="⏸";}
+audio.onpause=()=>{playBtn.innerText="▶";fplayBtn.innerText="▶";}
+
+function seek(e){
+  audio.currentTime=(e.offsetX/e.target.offsetWidth)*audio.duration;
+}
+
+function openFull(){full.style.display="flex";}
+function close
