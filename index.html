@@ -158,6 +158,12 @@ main{
   border-radius:10px;
 }
 
+.timeline{
+  font-size:.75rem;
+  color:var(--text-muted);
+  margin-top:4px;
+}
+
 .full{
   position:fixed;
   inset:0;
@@ -226,13 +232,14 @@ main{
       <div class="progress" onclick="seek(event)">
         <div class="bar" id="bar"></div>
       </div>
+      <div class="timeline" id="timeline">0:00 / 0:00</div>
     </div>
   </div>
 
   <div class="controls">
     <button onclick="shuffle()">🔀</button>
     <button onclick="prev()">⏮</button>
-    <button onclick="toggle()">▶</button>
+    <button id="playBtn" onclick="toggle()">▶</button>
     <button onclick="next()">⏭</button>
     <button onclick="openFull()">⛶</button>
   </div>
@@ -245,7 +252,7 @@ main{
 
   <div class="controls">
     <button onclick="prev()">⏮</button>
-    <button onclick="toggle()">▶</button>
+    <button id="fplayBtn" onclick="toggle()">▶</button>
     <button onclick="next()">⏭</button>
   </div>
 
@@ -261,34 +268,18 @@ main{
 
 <script>
 const songs=[
-  {
-    t:"Trap",
-    a:"Wonder",
-    s:"music/trap.mp3",
-    c:"covers/logo.png"
-  },
-  {
-    t:"Dancehall",
-    a:"Wonder",
-    s:"music/dancehall.mp3",
-    c:"covers/image 1.jpg"
-  },
-  {
-    t:"Keep the Page",
-    a:"Wonder",
-    s:"music/Keep the page_by wonder.mp3",
-    c:"covers/WOP Beats Logo in Deep Blue and Teal_20250919_183850_0000.png"
-  },
-  {
-    t:"Keep (Girl Version)",
-    a:"Wonder",
-    s:"music/Keep girl version.mp3",
-    c:"covers/logo.png"
-  }
+  {t:"Trap",a:"Wonder",s:"music/trap.mp3",c:"covers/image 1.jpg"},
+  {t:"Dancehall",a:"Wonder",s:"music/dancehall.mp3",c:"covers/image 1.jpg"},
+  {t:"Keep the Page",a:"Wonder",s:"music/Keep the page_by wonder.mp3",c:"covers/image 1.jpg"},
+  {t:"Keep (Girl Version)",a:"Wonder",s:"music/Keep girl version.mp3",c:"covers/image 1.jpg"}
 ];
 
 let i=0;
 const list=document.getElementById("list");
+const audio=document.getElementById("audio");
+const playBtn=document.getElementById("playBtn");
+const fplayBtn=document.getElementById("fplayBtn");
+const timeline=document.getElementById("timeline");
 
 songs.forEach((x,n)=>{
   list.innerHTML+=`
@@ -300,8 +291,6 @@ songs.forEach((x,n)=>{
   `;
 });
 
-const audio=document.getElementById("audio");
-
 function play(n){
   i=n;
   audio.src=songs[i].s;
@@ -309,7 +298,14 @@ function play(n){
   update();
 }
 
-function toggle(){audio.paused?audio.play():audio.pause();}
+function toggle(){
+  if(audio.paused){
+    audio.play();
+  }else{
+    audio.pause();
+  }
+}
+
 function next(){i=(i+1)%songs.length;play(i);}
 function prev(){i=(i-1+songs.length)%songs.length;play(i);}
 function shuffle(){play(Math.floor(Math.random()*songs.length));}
@@ -324,22 +320,16 @@ function update(){
 audio.ontimeupdate=()=>{
   if(audio.duration){
     bar.style.width=(audio.currentTime/audio.duration)*100+"%";
+    timeline.innerText=formatTime(audio.currentTime)+" / "+formatTime(audio.duration);
   }
 };
+
+audio.onplay=()=>{playBtn.innerText="⏸";fplayBtn.innerText="⏸";}
+audio.onpause=()=>{playBtn.innerText="▶";fplayBtn.innerText="▶";}
 
 function seek(e){
   audio.currentTime=(e.offsetX/e.target.offsetWidth)*audio.duration;
 }
 
 function openFull(){full.style.display="flex";}
-function closeFull(){full.style.display="none";}
-
-function search(q){
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(q.toLowerCase())?"block":"none";
-  });
-}
-</script>
-
-</body>
-</html>
+function close
